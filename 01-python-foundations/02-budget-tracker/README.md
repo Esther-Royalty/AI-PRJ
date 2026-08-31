@@ -6,6 +6,7 @@ A command-line budget tracker that lets you log expenses and see your total spen
 - Add multiple expenses (amount + category) in one session
 - View all logged expenses
 - See total amount spent
+- Save expenses to a file so they persist between runs
 
 ## What I practiced
 - Lists and dictionaries (storing structured data)
@@ -19,7 +20,6 @@ python budget_tracker.py
 ​```
 
 ## Next steps (in progress)
-- Save expenses to a file so they persist between runs
 - Set a monthly budget and track spending against it
 - Category breakdown
 - AI-powered spending insights
