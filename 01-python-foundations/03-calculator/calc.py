@@ -6,11 +6,17 @@ while continue_calc == "yes":
     num1 = float(input("Enter first number:\n"))
   except:
     print("That\'s not a valid number.")
+    continue
+
   try:
     num2 = float(input("Enter second number:\n"))
   except:
     print("That\'s not a valid number.")
-  stat = input("Choose operation (+, -, *, /)\n")
+    continue
+  
+
+  stat = input("Choose operation (+, -, *, /, %)\n")
+
   if stat == "+":
     print(num1 + num2)
 
@@ -26,6 +32,13 @@ while continue_calc == "yes":
         print("Cannot divide by 0")
     else:
         print(num1 / num2)
+
+  elif stat == "%":
+     
+     if num2 == 0:
+       print("Cannot divide by 0")
+     else:
+      print(num1 % num2)
 
   else:
     print("Please choose a valid arithmetic operation!")
