@@ -9,6 +9,10 @@ except FileNotFoundError:
 
  all_expenses = []
 
+monthly_budget = float(input("Enter your monthly budget: "))
+
+
+
 while True:
     expense_amount = float(input("Enter expense amount: "))
     expense_category = input("Enter expense category (e.g. Food, Transport): ")
@@ -32,4 +36,9 @@ for expense in all_expenses:
 print("All expenses:", all_expenses)
 print("Total spent:", total)
 
-print("All expenses:", all_expenses)
+if total <= monthly_budget:
+    remaining = monthly_budget - total
+    print("You have this much left:", remaining)
+else: 
+    overspent = total - monthly_budget
+    print("Warning! You are over your budget by:", overspent)
