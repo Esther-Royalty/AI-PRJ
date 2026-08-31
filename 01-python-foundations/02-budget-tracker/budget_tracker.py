@@ -1,4 +1,13 @@
-all_expenses = []
+import json
+
+FILENAME = "expenses.json"
+
+try: 
+    with open(FILENAME, "r") as file:
+        all_expenses = json.load(file)
+except FileNotFoundError:
+
+ all_expenses = []
 
 while True:
     expense_amount = float(input("Enter expense amount: "))
@@ -13,6 +22,9 @@ while True:
     if go_on.lower()!= "yes":
         break
 
+with open(FILENAME, "w") as file:
+    json.dump(all_expenses, file)
+    
 total = 0
 for expense in all_expenses:
     total = total + expense["amount"]
