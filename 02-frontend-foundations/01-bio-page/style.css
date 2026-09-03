@@ -46,3 +46,24 @@ a:hover {
     background-color: #34495e;
 }
 
+input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 14px;
+    font-size: 14px;
+    margin-right: 8px;
+}
+
+button {
+    background-color: #2193b0;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #176a80;
+}
