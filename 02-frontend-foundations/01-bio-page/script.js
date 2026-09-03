@@ -2,10 +2,20 @@ let count = 0;
 
 const counterDisplay = document.querySelector("#counter");
 const button = document.querySelector("#counter-btn");
+const projects = ["Calculator", "Budget Tracker", "AI Study Buddy", "Bio Page"];
+
+const projectList = document.querySelector("#project-list");
+
+projects.forEach(function (project) {
+    const li = document.createElement("li");
+    li.textContent = project;
+    projectList.appendChild(li);
+});
 
 button.addEventListener("click", function () {
     count = count + 1;
     counterDisplay.textContent = count;
+    
 
     if (count === 5) {
         alert("5 projects! You're building real momentum.");
