@@ -14,6 +14,27 @@ function App() {
   const total = expenses.reduce((sum, expense) => sum + expense.amount, 0)
   const remaining = budget - total
 
+  const now = new Date()
+  const currentMonth = now.getMonth()
+  const currentYear = now.getFullYear()
+
+  const thisMonthExpenses = expenses.filter((expense) => {
+    const expenseDate = new Date(expense.date)
+    return (
+      expenseDate.getMonth() === currentMonth &&
+      expenseDate.getFullYear() === currentYear
+    )
+   })
+
+  const thisMonthTotal = thisMonthExpenses.reduce(
+    (sum, expense) => sum + expense.amount,
+    0
+   )
+
+  const recentExpenses = [...expenses]
+   .sort((a, b) => new Date(b.date) - new Date(a.date))
+   .slice(0, 5)
+
   function handleAddExpense() {
     if (newAmount === "" || newCategory === "") {
       alert("Please fill in both fields")
@@ -32,6 +53,7 @@ function App() {
   }
 
   return (
+
     <div className="app">
       <h1>Budget Tracker</h1>
 
@@ -49,6 +71,32 @@ function App() {
           <div className="stat-value">₦{remaining}</div>
         </div>
       </div>
+
+      <div className="expenses-card">
+  <h2>This Month</h2>
+  <p className="month-total">₦{thisMonthTotal}</p>
+
+  <h2>Recent Expenses</h2>
+  <ul className="expense-list">
+    {recentExpenses.map((expense, index) => (
+      <li key={index} className="expense-item">
+        <div>
+          <span className="expense-category">{expense.category}</span>
+          <div className="expense-date">
+            {expense.date
+              ? new Date(expense.date).toLocaleDateString("en-NG", {
+                  day: "numeric",
+                  month: "short",
+                  year: "numeric",
+                })
+              : "No date"}
+          </div>
+        </div>
+        <span className="expense-amount">₦{expense.amount}</span>
+      </li>
+    ))}
+  </ul>
+</div>
 
       <div className="expenses-card">
         <h2>Add Expense</h2>
@@ -93,6 +141,7 @@ function App() {
       </div>
     </div>
   )
+ 
 }
 
 export default App
