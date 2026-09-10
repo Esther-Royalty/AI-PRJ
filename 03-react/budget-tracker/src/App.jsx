@@ -4,8 +4,8 @@ import './App.css'
 function App() {
   const [budget, setBudget] = useState(50000)
   const [expenses, setExpenses] = useState([
-    { amount: 5000, category: "Food" },
-    { amount: 2000, category: "Transport" },
+    { amount: 5000, category: "Food", date: new Date().toISOString() },
+    { amount: 2000, category: "Transport", date: new Date().toISOString() },
   ])
 
   const [newAmount, setNewAmount] = useState("")
@@ -23,6 +23,7 @@ function App() {
     const expense = {
       amount: parseFloat(newAmount),
       category: newCategory,
+      date: new Date().toISOString(),
     }
 
     setExpenses([...expenses, expense])
@@ -71,7 +72,20 @@ function App() {
         <ul className="expense-list">
           {expenses.map((expense, index) => (
             <li key={index} className="expense-item">
-              <span className="expense-category">{expense.category}</span>
+              <div>
+                <span className="expense-category">{expense.category}</span>
+                <div className="expense-date">
+                  
+                {expense.date
+                  ? new Date(expense.date).toLocaleDateString("en-NG", {
+                    day: "numeric",
+                    month: "short",
+                    year: "numeric",
+                })
+              : "No date"}
+              </div>
+             </div>
+
               <span className="expense-amount">₦{expense.amount}</span>
             </li>
           ))}

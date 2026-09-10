@@ -127,3 +127,9 @@ h2 {
 .add-form button:hover {
   background: #4c3a91;
 }
+
+.expense-date {
+  font-size: 12px;
+  color: #999;
+  margin-top: 2px;
+}
