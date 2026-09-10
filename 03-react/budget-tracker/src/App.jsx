@@ -1,12 +1,18 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 function App() {
   const [budget, setBudget] = useState(50000)
-  const [expenses, setExpenses] = useState([
+  const [expenses, setExpenses] = useState(() => {
+    const saved = localStorage.getItem("expenses")
+    return saved ? JSON.parse(saved) : [
     { amount: 5000, category: "Food", date: new Date().toISOString() },
     { amount: 2000, category: "Transport", date: new Date().toISOString() },
-  ])
+  ]
+})
+  useEffect(() => {
+  localStorage.setItem("expenses", JSON.stringify(expenses))
+}, [expenses])
 
   const [newAmount, setNewAmount] = useState("")
   const [newCategory, setNewCategory] = useState("")
