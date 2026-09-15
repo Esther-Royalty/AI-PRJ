@@ -62,6 +62,26 @@ function Dashboard() {
     setNewCategory("")
   }
 
+  const [insight, setInsight] = useState("")
+  const [loadingInsight, setLoadingInsight] = useState(false)
+
+  async function fetchInsight() {
+    setLoadingInsight(true)
+    try {
+      const response = await fetch("http://localhost:8000/insight", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ expenses, budget }),
+      })
+      const data = await response.json()
+      setInsight(data.insight)
+    } catch (error) {
+      setInsight("Couldn't load insight - is the backend running?")
+    } finally {
+      setLoadingInsight(false)
+    }
+  }
+
   return (
 
     <div className="app">
@@ -91,6 +111,11 @@ function Dashboard() {
       Top category: <strong>{topCategory[0]}</strong> (#{topCategory[1]})
     </p>
   )}
+  <button onClick={fetchInsight} className="insight-btn">
+    {loadingInsight ? "Thinking..." : "Get AI Insight"}
+  </button>
+
+  {insight && <p className="insight-text">{insight}</p>}
 
   <h2>Recent Expenses</h2>
   <ul className="expense-list">

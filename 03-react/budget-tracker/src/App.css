@@ -169,3 +169,20 @@ h2 {
   text-decoration: none;
   font-weight: bold;
 }
+.insight-btn {
+  background: #5a4fcf;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 12px 0;
+}
+
+.insight-text {
+  background: #f0edff;
+  padding: 16px;
+  border-radius: 10px;
+  color: #333;
+  margin-top: 8px;
+}
